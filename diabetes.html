@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes Prediction</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+      background: black;
+      overflow: hidden;
+    }
+
+    .loader {
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .poly {
+      fill: none;
+      stroke: yellow;
+      stroke-width: 16;
+      transform-origin: center center;
+      animation: move 10s linear infinite;
+      animation-delay: calc(var(--i) * -0.5s);
+    }
+
+    @keyframes move {
+      0% {
+        transform: scale(0) rotate(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .form-container {
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .form-container h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .form-container input {
+      margin-bottom: 15px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: calc(100% - 24px);
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .form-container input:focus {
+      outline: none;
+      border-color: #6a1b9a;
+      box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
+    }
+
+    /* Button Styling */
+    .btn-1 {
+      border: 1px solid;
+      border-radius: 999px;
+      box-sizing: border-box;
+      display: block;
+      font-weight: 900;
+      overflow: hidden;
+      padding: 1.2rem 3rem;
+      position: relative;
+      text-transform: uppercase;
+      background: #000;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+      margin: 0 auto;
+    }
+
+    .btn-1 .original {
+      background: #ffffff;
+      color: #000;
+      display: grid;
+      inset: 0;
+      place-content: center;
+      position: absolute;
+      transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+    }
+
+    .btn-1:hover .original {
+      transform: translateY(100%);
+    }
+
+    .btn-1 .letters {
+      display: inline-flex;
+    }
+
+    .btn-1 span {
+      opacity: 0;
+      transform: translateY(-15px);
+      transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.3s;
+    }
+
+    .btn-1 span:nth-child(2n) {
+      transform: translateY(15px);
+    }
+
+    .btn-1:hover span {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-1:hover span:nth-child(2) { transition-delay: 0.1s; }
+    .btn-1:hover span:nth-child(3) { transition-delay: 0.2s; }
+    .btn-1:hover span:nth-child(4) { transition-delay: 0.3s; }
+    .btn-1:hover span:nth-child(5) { transition-delay: 0.4s; }
+    .btn-1:hover span:nth-child(6) { transition-delay: 0.5s; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 1000 1000" class="loader">
+    <polygon points="500,200 759,650 241,650" style="--i: 0" class="poly"></polygon>
+    <polygon points="500,200 759,650 241,650" style="--i: 1" class="poly"></polygon>
+    <polygon points="500,200 759,650 241,650" style="--i: 2" class="poly"></polygon>
+    <polygon points="500,200 759,650 241,650" style="--i: 3" class="poly"></polygon>
+    <polygon points="500,200 759,650 241,650" style="--i: 4" class="poly"></polygon>
+    <polygon points="500,200 759,650 241,650" style="--i: 5" class="poly"></polygon>
+  </svg>
+
+  <div class="form-container">
+    <h1>Diabetes Prediction</h1>
+    <form action="/predict_diabetes" method="POST">
+      <input type="number" name="pregnancies" placeholder="Pregnancies" required>
+      <input type="number" name="glucose" placeholder="Glucose" required>
+      <input type="number" name="bloodpressure" placeholder="Blood Pressure" required>
+      <input type="number" name="skinthickness" placeholder="Skin Thickness" required>
+      <input type="number" name="insulin" placeholder="Insulin" required>
+      <input type="number" name="bmi" placeholder="BMI" required>
+      <input type="number" name="dpf" placeholder="Diabetes Pedigree Function" step="0.001" required>
+      <input type="number" name="age" placeholder="Age" required>
+      <button class="btn-1">
+        <div class="original">Predict</div>
+        <div class="letters">
+          <span>P</span>
+          <span>R</span>
+          <span>E</span>
+          <span>D</span>
+          <span>I</span>
+          <span>C</span>
+          <span>T</span>
+        </div>
+      </button>
+    </form>
+    {% if diabetes_result %}
+      <h2>{{ diabetes_result }}</h2>
+    {% endif %}
+    <a href="/">Back to Home</a>
+  </div>
+</body>
+</html>
+
+
+diabetes.html

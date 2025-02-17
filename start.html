@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INDEX</title>
+  <link rel="icon" type="image/x-icon" href="log.jpg">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-image: url(start.jpg);
+      color: #fff;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    header {
+      width: 100%;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .login-btn {
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+
+    .signup-btn {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex: 1;
+    }
+
+    .secure-tag {
+      font-size: 14px;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border: 1px solid #fff;
+      display: inline-block;
+      border-radius: 5px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .sub-text {
+      font-size: 16px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="navbar">
+        <div class="nav">
+          <div class="container">
+            <div class="btn">Home</div>
+            <div class="btn">Contact</div>
+            <div class="btn">About</div>
+            <div class="btn">FAQ</div>
+            <svg
+              class="outline"
+              overflow="visible"
+              width="100%"
+              height="60"
+              viewBox="0 0 100% 60"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                class="rect"
+                pathLength="100"
+                x="0"
+                y="0"
+                width="100%"
+                height="60"
+                fill="transparent"
+                stroke-width="5"
+              ></rect>
+            </svg>
+          </div>
+          <button class="login-btn">Log in</button>
+          <button class="signup-btn">Sign up</button>
+        </div>
+        <style>
+          /* Adjustments for Full Width Navigation Bar */
+          .navbar {
+            width: 100%;
+            background:;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+          }
+      
+          .nav {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex: 1;
+          }
+      
+          .container {
+            display: flex;
+            flex: 1;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 60px;
+            position: relative;
+          }
+      
+          .btn {
+            padding: 0.5em 1em;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+          }
+      
+          .btn:hover {
+            background: #fff3;
+          }
+      
+          /* Buttons */
+          .login-btn,
+          .signup-btn {
+            margin: 0 10px;
+            padding: 0.5em 1.5em;
+            border: none;
+            cursor: pointer;
+            background: #00bcd4;
+            color: #fff;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+          }
+      
+          .login-btn:hover,
+          .signup-btn:hover {
+            background: #0288d1;
+          }
+      
+          /* SVG Styling */
+          .outline {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+          }
+      
+          .rect {
+            stroke-dashoffset: 5;
+            stroke-dasharray: 0 0 10 40 10 40;
+            transition: 0.5s;
+            stroke: #fff;
+          }
+      
+          .container:hover .outline .rect {
+            transition: 999999s;
+            stroke-dashoffset: 1;
+            stroke-dasharray: 0;
+          }
+      
+          .btn:nth-child(1):hover ~ svg .rect {
+            stroke-dashoffset: 0;
+            stroke-dasharray: 0 2 8 73.3 8 10.7;
+          }
+      
+          .btn:nth-child(2):hover ~ svg .rect {
+            stroke-dashoffset: 0;
+            stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+          }
+      
+          .btn:nth-child(3):hover ~ svg .rect {
+            stroke-dashoffset: 0;
+            stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
+          }
+      
+          .btn:nth-child(4):hover ~ svg .rect {
+            stroke-dashoffset: 0;
+            stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
+          }
+      
+          .btn:hover ~ .outline .rect {
+            stroke-dashoffset: 0;
+            stroke-dasharray: 0 0 10 40 10 40;
+            transition: 0.5s !important;
+          }
+        </style>
+      </div>
+      
+  </header>
+
+  <section class="hero">
+    <p class="secure-tag">Secure. Global. Exclusive.</p>
+    <h1>To predict your scan</h1>
+    <p class="sub-text">One platform for clinical diagnosis.</p>
+  </section>
+
+  <script>
+    document.querySelector('.login-btn').addEventListener('click', () => {
+      window.location.href = 'one.html'; // Redirect to login.html
+    });
+
+    document.querySelector('.signup-btn').addEventListener('click', () => {
+      window.location.href = 'one.html'; // Redirect to signup.html
+    });
+  </script>
+</body>
+</html>

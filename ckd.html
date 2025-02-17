@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CKD Diagnosis</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      position: relative;
+    }
+    
+    .background-animation {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .bubble {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: floatUp 6s infinite ease-in-out;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      max-width: 450px;
+      width: 100%;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #555;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #6a11cb;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #2575fc, #6a11cb);
+      transform: scale(1.05);
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f1f1f1;
+      border-radius: 8px;
+      color: #333;
+      font-size: 16px;
+      text-align: left;
+      animation: slideIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-animation"></div>
+  <div class="container">
+    <h1>CKD Diagnosis</h1>
+    <label for="eGFR">Enter eGFR:</label>
+    <input type="number" id="eGFR" >
+    <label for="ACR">Enter ACR:</label>
+    <input type="number" id="ACR" >
+    <label for="creatinine">Enter Serum Creatinine (mg/dL):</label>
+    <input type="number" id="creatinine" >
+    <label for="urea">Enter Blood Urea (mg/dL):</label>
+    <input type="number" id="urea" >
+    <label for="hemoglobin">Enter Hemoglobin (g/dL):</label>
+    <input type="number" id="hemoglobin" >
+    <button onclick="diagnose()">Diagnose</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function diagnose() {
+      const eGFR = parseFloat(document.getElementById('eGFR').value);
+      const ACR = parseFloat(document.getElementById('ACR').value);
+      const creatinine = parseFloat(document.getElementById('creatinine').value);
+      const urea = parseFloat(document.getElementById('urea').value);
+      const hemoglobin = parseFloat(document.getElementById('hemoglobin').value);
+
+      if (isNaN(eGFR) || isNaN(ACR) || isNaN(creatinine) || isNaN(urea) || isNaN(hemoglobin)) {
+        document.getElementById('result').innerHTML = 'Please enter valid numbers for all fields.';
+        return;
+      }
+
+      let hasCKD = eGFR < 60 || ACR >= 3 || creatinine > 1.2 || urea > 40 || hemoglobin < 12;
+      document.getElementById('result').innerHTML = hasCKD ? 
+        '<strong>Result: Positive for CKD. Please consult a doctor.</strong>' :
+        '<strong>Result: Negative for CKD.</strong>';
+    }
+
+    function createBubbles() {
+      const background = document.querySelector('.background-animation');
+      for (let i = 0; i < 15; i++) {
+        let bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        let size = Math.random() * 50 + 20;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.animationDuration = `${Math.random() * 4 + 3}s`;
+        bubble.style.animationDelay = `${Math.random() * 3}s`;
+        background.appendChild(bubble);
+      }
+    }
+
+    createBubbles();
+  </script>
+</body>
+</html>

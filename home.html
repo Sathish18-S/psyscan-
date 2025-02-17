@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="">
+    <style>
+        body {
+          background-image: url('log.jpg'); /* Replace with desired image URL */
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          color: #fff; /* Ensure text is readable */
+        }
+      
+        /* Adjust text shadows for better visibility */
+        .text-3xl, .text-2xl, .text-lg {
+          text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+      
+        .card {
+          background-color: rgba(0, 0, 0, 0.7); /* Add a slight transparent black overlay */
+          border-radius: 12px;
+          color: #fff;
+        }
+      </style>
+      
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="nav">
+      <div class="container">
+        <div class="btn"><a href="start.html">Info</a></div>
+        <div class="btn"><a href="contact.html">Contact</a></div>
+        <div class="btn"><a href="about.html">About</a></div>
+        <div class="btn"><a href="faq.html">FAQ</a></div>
+      
+        
+        <svg
+          class="outline"
+          overflow="visible"
+          width="100%"
+          height="60"
+          viewBox="0 0 100% 60"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            class="rect"
+            pathLength="100"
+            x="0"
+            y="0"
+            width="100%"
+            height="60"
+            fill="transparent"
+            stroke-width="5"
+          ></rect>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flip Cards -->
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="group relative h-96 w-72 perspective">
+        <div class="card">
+          <div class="card-front gradient-1">
+            <div class="flex flex-col h-full">
+              <div class="flex justify-between items-start">
+                <div class="text-3xl font-bold">Diabetes</div>
+                <div class="text-5xl">⚕️</div>
+              </div>
+              <div class="mt-4">
+                <p class="text-lg">Here is our diabetes prediction model.</p>
+                <p class="text-lg">Here you can just upload your data and get the prediction.</p>
+              </div>
+              <div class="mt-auto">
+              
+              </div>
+            </div>
+          </div>
+          <div class="card-back gradient-2">
+            <div class="flex flex-col h-full">
+              <div class="text-2xl font-bold mb-4">Back of Card 1</div>
+              <p class="text-lg flex-grow">Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Glucose is your body's main source of energy..</p>
+              <div class="flex justify-between items-center mt-auto">
+                <button class="action-button"><a href="diabets.html">Proceed</a></button></button>
+                <span class="text-3xl">⚕️</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group relative h-96 w-72 perspective">
+        <div class="card">
+          <div class="card-front gradient-3">
+            <div class="flex flex-col h-full">
+              <div class="flex justify-between items-start">
+                <div class="text-3xl font-bold">Pneumonia</div>
+                <div class="text-5xl">⚕️</div>
+              </div>
+              <div class="mt-4">
+                <p class="text-lg">Here is our pneumonia prediction model.</p>
+                <p class="text-lg">Here you can just upload your data and get the prediction.</p>
+              </div>
+              <div class="mt-auto">
+   
+              </div>
+            </div>
+          </div>
+          <div class="card-back gradient-4">
+            <div class="flex flex-col h-full">
+              <div class="text-2xl font-bold mb-4">Back of Card 2</div>
+              <p class="text-lg flex-grow"> Pneumonia caused by bacteria is treated with an antibiotic. Symptoms should improve within 12 to 36 hours after starting the medicine.</p>
+              <div class="flex justify-between items-center mt-auto">
+                <button class="action-button"> <a href="xray.html">Proceed</a></button>
+                <span class="text-3xl">⚕️</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group relative h-96 w-72 perspective">
+        <div class="card">
+          <div class="card-front gradient-5">
+            <div class="flex flex-col h-full">
+              <div class="flex justify-between items-start">
+                <div class="text-3xl font-bold">Kidney Disease</div>
+                <div class="text-5xl">⚕️</div>
+              </div>
+              <div class="mt-4">
+                <p class="text-lg">Here is our kidney disease prediction model.</p>
+                <p class="text-lg">Here you can just upload your data and get the prediction.</p>
+              </div>
+              <div class="mt-auto">
+               
+              </div>
+            </div>
+          </div>
+          <div class="card-back gradient-6">
+            <div class="flex flex-col h-full">
+              <div class="text-2xl font-bold mb-4">Back of Card 3</div>
+              <p class="text-lg flex-grow">Kidney disease means your kidneys are damaged and can't filter blood the way they should. You are at greater risk for kidney disease if you have diabetes or high blood pressure</p>
+              <div class="flex justify-between items-center mt-auto">
+                <button class="action-button"><a href="ckd.html">Proceed</a></button></button>
+                <span class="text-3xl">⚕️</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Add the navbar styles from your provided code */
+    
+    .navbar {
+      width: 100%;
+      background: 333;
+      color:fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .nav {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 60px;
+      position: relative;
+    }
+
+    .btn {
+      padding: 0.5em 1em;
+      color:fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #fff3;
+    }
+
+    .login-btn,
+    .signup-btn {
+      margin: 0 10px;
+      padding: 0.5em 1.5em;
+      border: none;
+      cursor: pointer;
+      background: #00bcd4;
+      color: #fff;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover,
+    .signup-btn:hover {
+      background: #0288d1;
+    }
+
+    .outline {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .rect {
+      stroke-dashoffset: 5;
+      stroke-dasharray: 0 0 10 40 10 40;
+      transition: 0.5s;
+      stroke: #fff;
+    }
+
+    .container:hover .outline .rect {
+      transition: 999999s;
+      stroke-dashoffset: 1;
+      stroke-dasharray: 0;
+    }
+  </style>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <style>
+      /* General styling */
+      body {
+        background-color: #000; /* Set background to black */
+        color: #fff;
+      }
+  
+      /* Chatbot styles */
+      .chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 320px;
+        background: #1e1e2f;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        transform: scale(0); /* Initially hidden */
+        transform-origin: bottom right;
+        transition: transform 0.3s ease;
+      }
+  
+      .chatbot-container.open {
+        transform: scale(1); /* Expand on click */
+      }
+  
+      .chatbot-header {
+        background: #4a4a69;
+        padding: 12px;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+      }
+  
+      .chatbot-body {
+        padding: 12px;
+        max-height: 300px;
+        overflow-y: auto;
+        color: #ccc;
+      }
+  
+      .chatbot-footer {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        border-top: 1px solid #444;
+      }
+  
+      .chatbot-footer input {
+        flex: 1;
+        padding: 8px;
+        background: #29293d;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        margin-right: 8px;
+      }
+  
+      .chatbot-footer button {
+        padding: 8px 12px;
+        background: #00bcd4;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+  
+      .chatbot-footer button:hover {
+        background: #0288d1;
+      }
+  
+      .chatbot-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: #00bcd4;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease;
+      }
+  
+      .chatbot-toggle:hover {
+        background: #0288d1;
+      }
+  
+      .chatbot-toggle svg {
+        width: 32px;
+        height: 32px;
+      }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Flip Cards with Navbar</title>
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-black">
+    <!-- Existing content (Navbar, Flip Cards, etc.) -->
+  
+    <!-- Chatbot Toggle Button -->
+    <div class="chatbot-toggle" onclick="toggleChatbot()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.314-2.686 6-6 6S0 14.314 0 11s2.686-6 6-6 6 2.686 6 6zM15 19h2m4-6h2m-8 2h2M20 11c0 3.314-2.686 6-6 6s-6-2.686-6-6 2.686-6 6-6 6 2.686 6 6z" />
+      </svg>
+    </div>
+  
+    <!-- Chatbot Section -->
+    <div class="chatbot-container" id="chatbot">
+      <div class="chatbot-header">Ask Your Health Assistant</div>
+      <div class="chatbot-body" id="chatbot-messages">
+        <div>👩‍⚕️ Welcome! How can I assist you today?</div>
+      </div>
+      <div class="chatbot-footer">
+        <input
+          type="text"
+          id="chatbot-input"
+          placeholder="Type your question..."
+        />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+    <script>
+      const chatbotResponses = {
+        greetings: ["Hello! How can I help you today?", "Hi there! What do you need assistance with?", "Greetings! How can I assist?"],
+        advice: ["Drink plenty of water and exercise regularly.", "Make sure to get 8 hours of sleep every night.", "Stay positive and keep smiling!"],
+        features: ["This app can predict diabetes, analyze X-rays, and detect CKD risks!", "We offer AI-powered health predictions.", "Discover early signs of health risks with our app!"],
+        facts: ["Did you know? Walking for 30 minutes a day can significantly improve your health!", "Your heart pumps about 2,000 gallons of blood each day.", "The brain is the most energy-consuming organ, using about 20% of the body's energy."],
+        fallback: ["I'm not sure about that. Could you rephrase?", "Sorry, I didn't understand. Can you ask something else?", "I'm here to help, but I need more details."]
+      };
+  
+      let isChatbotOpen = false;
+  
+      function toggleChatbot() {
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        isChatbotOpen = !isChatbotOpen;
+        chatbotWindow.style.display = isChatbotOpen ? 'flex' : 'none';
+      }
+  
+      function sendMessage() {
+        const userInput = document.getElementById('chatInput').value.trim();
+        if (!userInput) return;
+  
+        addMessage('user', userInput);
+        document.getElementById('chatInput').value = '';
+  
+        setTimeout(() => {
+          const response = getBotResponse(userInput);
+          addMessage('bot', response);
+        }, 1000); // Simulates typing delay
+      }
+  
+      function getBotResponse(input) {
+        input = input.toLowerCase();
+        if (input.includes("hello") || input.includes("hi")) {
+          return randomResponse(chatbotResponses.greetings);
+        } else if (input.includes("advice")) {
+          return randomResponse(chatbotResponses.advice);
+        } else if (input.includes("features") || input.includes("what can you do")) {
+          return randomResponse(chatbotResponses.features);
+        } else if (input.includes("fact") || input.includes("interesting")) {
+          return randomResponse(chatbotResponses.facts);
+        } else {
+          return randomResponse(chatbotResponses.fallback);
+        }
+      }
+  
+      function randomResponse(array) {
+        return array[Math.floor(Math.random() * array.length)];
+      }
+  
+      function addMessage(sender, message) {
+        const messagesContainer = document.getElementById('chatbotMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-message', sender);
+  
+        const bubbleDiv = document.createElement('div');
+        bubbleDiv.classList.add('message-bubble', sender);
+        bubbleDiv.textContent = message;
+  
+        messageDiv.appendChild(bubbleDiv);
+        messagesContainer.appendChild(messageDiv);
+  
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    </script>
+  </body>
+  </html>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for 3D card flip effect */
+    .flip-card {
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateX(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+    }
+
+    .flip-card-back {
+      transform: rotateX(180deg);
+    }
+
+    /* Navbar effect styles */
+    .outline {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .rect {
+      stroke-dashoffset: 5;
+      stroke-dasharray: 0 0 10 40 10 40;
+      transition: 0.5s;
+      stroke: #fff;
+    }
+
+    .nav {
+      position: relative;
+      width: 400px;
+      height: 60px;
+      margin-bottom: 30px; /* Space between navbar and content */
+    }
+
+    .container:hover .outline .rect {
+      transition: 999999s;
+      stroke-dashoffset: 1;
+      stroke-dasharray: 0;
+    }
+
+    .container {
+      position: absolute;
+      inset: 0;
+      background: #bef6;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.5em;
+    }
+
+    .btn {
+      padding: 0.5em 1.5em;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+
+    .btn:hover {
+      background: #fff3;
+    }
+
+    .btn:nth-child(1):hover ~ svg .rect {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 0 2 8 73.3 8 10.7;
+    }
+
+    .btn:nth-child(2):hover ~ svg .rect {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+    }
+
+    .btn:nth-child(3):hover ~ svg .rect {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
+    }
+
+    .btn:nth-child(4):hover ~ svg .rect {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
+    }
+
+    .btn:hover ~ .outline .rect {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 0 0 10 40 10 40;
+      transition: 0.5s !important;
+    }
+
+    /* Chatbot button styles */
+    .chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4e4a84;
+      color: white;
+      border: none;
+      padding: 20px;
+      border-radius: 50%;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    .chatbot-btn:hover {
+      background-color: #060210;
+    }
+
+    /* Chatbot window design */
+    .chatbot-window {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 360px;
+      height: 480px;
+      background-color: #5546b5;
+      border-radius: 15px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .chatbot-header {
+      background-color: #330e88;
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #4320a4;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .chat-message {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .chat-message.bot {
+      justify-content: flex-start;
+    }
+
+    .chat-message.user {
+      justify-content: flex-end;
+    }
+
+    .message-bubble {
+      max-width: 80%;
+      padding: 10px 15px;
+      background-color: #252eb5;
+      border-radius: 20px;
+      color: white;
+      font-size: 14px;
+      word-wrap: break-word;
+    }
+
+    .message-bubble.user {
+      background-color: #363ab3;
+      border-radius: 20px 20px 0 20px;
+    }
+
+    .message-bubble.bot {
+      background-color: #4c23b4;
+      border-radius: 20px 20px 20px 0;
+    }
+
+    .chatbot-input {
+      padding: 10px;
+      border: none;
+      border-top: 1px solid #555;
+      background-color: #403098;
+      color: white;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      outline: none;
+    }
+
+    .chatbot-input:focus {
+      background-color: #3e2bba;
+    }
+
+    .chatbot-send-btn {
+      background-color: #020106;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+      border-top: 1px solid #555;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .chatbot-send-btn:hover {
+      background-color: #4d654e;
+    }
+
+    .typing-indicator {
+      display: none;
+      padding-left: 10px;
+      color: #bbb;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-purple-700 text-white min-h-screen flex flex-col items-center justify-center">
+
+  <!-- Navbar -->
+<!-- Navbar -->
+<div class="nav">
+  <div class="container">
+    <div class="btn"><a href="start.html">Info</a></div>
+    <div class="btn"><a href="contact.html">Contact</a></div>
+    <div class="btn"><a href="about.html">About</a></div>
+    <div class="btn"><a href="map.html">MAP</a></div>
+
+    <svg
+      class="outline"
+      overflow="visible"
+      width="400"
+      height="60"
+      viewBox="0 0 400 60"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        class="rect"
+        pathLength="100"
+        x="0"
+        y="0"
+        width="400"
+        height="60"
+        fill="transparent"
+        stroke-width="5"
+      ></rect>
+    </svg>
+  </div>
+</div>
+
+
+  <h1 class="text-4xl font-bold mb-8">Welcome to Health Prediction App</h1>
+  <div class="flex gap-8 justify-center">
+    <!-- Diabetes Prediction Card -->
+    <div class="flip-card w-72 h-96">
+      <div class="flip-card-inner relative w-full h-full">
+        <!-- Front Side -->
+        <div class="flip-card-front bg-gradient-to-br from-violet-400 to-indigo-600 text-white flex flex-col justify-center items-center p-6">
+          <h2 class="text-2xl font-bold">Diabetes Prediction</h2>
+          <p class="text-lg mt-4 text-center">Predict diabetes based on health metrics.</p>
+          <p class="mt-auto text-sm opacity-75">Hover to learn more!</p>
+        </div>
+        <!-- Back Side -->
+        <div class="flip-card-back bg-gradient-to-br from-pink-400 to-purple-600 text-white flex flex-col justify-center items-center p-6">
+          <h2 class="text-2xl font-bold">Diabetes Details</h2>
+          <p class="text-lg text-center mt-4">Analyze your risk to detect early signs of diabetes.</p>
+          <a href="/diabetes" class="mt-6 px-4 py-2 bg-white text-purple-600 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+            Predict Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- X-ray Prediction Card -->
+    <div class="flip-card w-72 h-96">
+      <div class="flip-card-inner relative w-full h-full">
+        <!-- Front Side -->
+        <div class="flip-card-front bg-gradient-to-br from-green-400 to-teal-600 text-white flex flex-col justify-center items-center p-6">
+          <h2 class="text-2xl font-bold">X-ray Prediction</h2>
+          <p class="text-lg mt-4 text-center">Analyze X-ray images for health insights.</p>
+          <p class="mt-auto text-sm opacity-75">Hover to learn more!</p>
+        </div>
+        <!-- Back Side -->
+        <div class="flip-card-back bg-gradient-to-br from-orange-400 to-yellow-600 text-white flex flex-col justify-center items-center p-6">
+          <h2 class="text-2xl font-bold">X-ray Details</h2>
+          <p class="text-lg text-center mt-4">Upload X-rays for AI-powered diagnostics.</p>
+          <a href="/xray" class="mt-6 px-4 py-2 bg-white text-yellow-600 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+            Predict Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CKD Prediction Card -->
+    <div class="flip-card w-72 h-96">
+      <div class="flip-card-inner relative w-full h-full">
+        <!-- Front Side -->
+        <div class="flip-card-front bg-gradient-to-br from-red-400 to-pink-600 text-white flex flex-col justify-center items-center p-6">
+          <h2 class="text-2xl font-bold">CKD Prediction</h2>
+          <p class="text-lg mt-4 text-center">Predict Chronic Kidney Disease risk.</p>
+          <p class="mt-auto text-sm opacity-75">Hover to learn more!</p>
+        </div>
+        <!-- Back Side -->
+        <div class="flip-card-back bg-gradient-to-br from-blue-400 to-purple-600 text-white flex flex-col justify-center items-center p-6">
+          <h2 class="text-2xl font-bold">CKD Details</h2>
+          <p class="text-lg text-center mt-4">Input medical data to check for CKD risks.</p>
+          <a href="/ckd" class="mt-6 px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+            Predict Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chatbot -->
+  <button class="chatbot-btn" onclick="toggleChatbot()">💬</button>
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      Chatbot Assistant
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+    <input
+      type="text"
+      class="chatbot-input"
+      id="chatInput"
+      placeholder="Ask me anything..."
+      oninput="checkTyping()"
+    />
+    <button class="chatbot-send-btn" onclick="sendMessage()">Send</button>
+    <div class="typing-indicator" id="typingIndicator">Typing...</div>
+  </div>
+
+  <<script>
+    const chatbotResponses = {
+      greetings: ["Hello! How can I help you today?", "Hi there! What do you need assistance with?", "Greetings! How can I assist?"],
+      advice: ["Drink plenty of water and exercise regularly.", "Make sure to get 8 hours of sleep every night.", "Stay positive and keep smiling!"],
+      features: ["This app can predict diabetes, analyze X-rays, and detect CKD risks!", "We offer AI-powered health predictions.", "Discover early signs of health risks with our app!"],
+      facts: ["Did you know? Walking for 30 minutes a day can significantly improve your health!", "Your heart pumps about 2,000 gallons of blood each day.", "The brain is the most energy-consuming organ, using about 20% of the body's energy."],
+      fallback: ["I'm not sure about that. Could you rephrase?", "Sorry, I didn't understand. Can you ask something else?", "I'm here to help, but I need more details."]
+    };
+
+    let isChatbotOpen = false;
+
+    function toggleChatbot() {
+      const chatbotWindow = document.getElementById('chatbotWindow');
+      isChatbotOpen = !isChatbotOpen;
+      chatbotWindow.style.display = isChatbotOpen ? 'flex' : 'none';
+    }
+
+    function sendMessage() {
+  const userInput = document.getElementById("chatInput").value.trim();
+  if (!userInput) return;
+
+  addMessage("user", userInput);
+  document.getElementById("chatInput").value = "";
+
+  document.getElementById("typingIndicator").style.display = "block"; // Show typing indicator
+
+  fetch("http://127.0.0.1:5000/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ message: userInput }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("typingIndicator").style.display = "none"; // Hide typing indicator
+      addMessage("bot", data.response);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      document.getElementById("typingIndicator").style.display = "none";
+      addMessage("bot", "Sorry, something went wrong.");
+    });
+}
+
+    function getBotResponse(input) {
+      input = input.toLowerCase();
+      if (input.includes("hello") || input.includes("hi")) {
+        return randomResponse(chatbotResponses.greetings);
+      } else if (input.includes("advice")) {
+        return randomResponse(chatbotResponses.advice);
+      } else if (input.includes("features") || input.includes("what can you do")) {
+        return randomResponse(chatbotResponses.features);
+      } else if (input.includes("fact") || input.includes("interesting")) {
+        return randomResponse(chatbotResponses.facts);
+      } else {
+        return randomResponse(chatbotResponses.fallback);
+      }
+    }
+
+    function randomResponse(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+
+    function addMessage(sender, message) {
+      const messagesContainer = document.getElementById('chatbotMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('chat-message', sender);
+
+      const bubbleDiv = document.createElement('div');
+      bubbleDiv.classList.add('message-bubble', sender);
+      bubbleDiv.textContent = message;
+
+      messageDiv.appendChild(bubbleDiv);
+      messagesContainer.appendChild(messageDiv);
+
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+  </script>
+  
+</body>
+</html>
